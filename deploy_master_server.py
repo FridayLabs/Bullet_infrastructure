@@ -23,5 +23,5 @@ exec("docker pull neronmoon/bullet-master-server:{}".format(tag))
 exec("docker kill {}".format(name), soft=True)
 exec("docker rm {}".format(name), soft=True)
 exec("docker run -d --restart always --name {name} "
-     "--mount type=bind,source={path}/cert,target=/srv/app/cert "
+     "-v {path}/cert:/srv/app/cert "
      "--env-file {path}/.env -p 9999:9999 neronmoon/bullet-master-server:{tag}".format(name=name, tag=tag, path=path))
